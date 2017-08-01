@@ -12,5 +12,8 @@
 */
 
 Route::get('/{resource}', 'Controller@all');
-
 Route::get('/{resource}/{id}', 'Controller@find');
+Route::post('/{resource}/delete', 'Controller@delete');
+Route::post('/{resource}/save','Controller@save');
+Route::post('/{resource}/filter','Controller@filter');
+

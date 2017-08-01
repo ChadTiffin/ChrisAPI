@@ -41,4 +41,10 @@ class Controller extends BaseController
     		'status' => 'success'
     	]);
     }
+
+    public function save(Request $request) {
+    	$model = '\\App\\'.$resource;
+
+    	
+    }
 }
