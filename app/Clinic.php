@@ -4,8 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Clinic extends ChrisModel
+class Clinic extends Chrismodel
 {
-    //
-    public $hidden = ["created_at","created_by","updated_at","modified_by"];
+
+	public $validation_rules = [
+		'name' => 'required',
+	];
+
+    public $label = "Clinics";
+	public $label_single = "Community Service";
+	public $table_fields = [
+		["label" => "Name", "key" => "name"],
+		["label" => "Room", "key" => "room"],
+		["label" => "Site", "key" => "site"],
+		["label" => "Address", "key" => "address"]
+	];
+
 }

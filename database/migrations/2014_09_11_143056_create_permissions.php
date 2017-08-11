@@ -57,7 +57,6 @@ class CreatePermissions extends Migration {
 			$table->timestamps();
 			$table->timestamp('deleted_at')->nullable();
 
-
 		});
 
 		Schema::create('user_groups', function($table) {
@@ -74,7 +73,6 @@ class CreatePermissions extends Migration {
 			$table->timestamps();
 			$table->timestamp('deleted_at')->nullable();
 
-
 		});
 
 		Schema::create('group_route_permissions', function($table) {
@@ -82,9 +80,8 @@ class CreatePermissions extends Migration {
 			$table->integer('group_id')->unsigned();
 			$table->foreign('group_id')->references('id')->on('groups');
 
-			$table->string('route_class');
-			$table->string('route_function');
-			$table->string('route_access');
+			$table->string('route_path');
+			$table->boolean('route_access');
 			$table->integer("sort_order")->nullable();
 
 			$table->integer('created_by')->unsigned()->nullable();

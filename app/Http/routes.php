@@ -11,9 +11,17 @@
 |
 */
 
-Route::get('/{resource}', 'Controller@all');
-Route::get('/{resource}/{id}', 'Controller@find');
-Route::post('/{resource}/delete', 'Controller@delete');
-Route::post('/{resource}/save','Controller@save');
-Route::post('/{resource}/filter','Controller@filter');
+Route::get('/GroupRoutePermission',"PermissionController@usersRoutePerms")->middleware(['api']);
 
+// UNIVERSAL ROUTES
+Route::get('/{resource}', 'UniversalController@all')->middleware(['api']);
+
+Route::get('/{resource}/filter','UniversalController@filter')->middleware(['api']);
+Route::post('/{resource}/delete', 'UniversalController@delete')->middleware(['api']);
+Route::post('/{resource}/save','UniversalController@save')->middleware(['api']);
+
+Route::get('/{resource}/{id}', 'UniversalController@find')->middleware(['api']);
+
+//Route::prefix("auth")->group(function() {
+	Route::post("login", "Auth@login");
+//});

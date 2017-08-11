@@ -8,8 +8,12 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesResources;
 
-class Controller extends BaseController
+class Controller extends Controller
 {
-    use AuthorizesRequests, AuthorizesResources, DispatchesJobs, ValidatesRequests;
 
+    public function login(Request $request) {
+        $post = $request->input();
+
+        dd($post);
+    }
 }

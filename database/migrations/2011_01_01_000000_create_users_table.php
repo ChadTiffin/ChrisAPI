@@ -29,9 +29,10 @@ class CreateUsersTable extends Migration {
 			$table->text('actions');
 			$table->text('position');
 			$table->boolean('privacy_confirmation');
-         $table->integer('group_id')->unsigned()->nullable();
+         	$table->integer('group_id')->unsigned()->nullable();
 			
 			$table->text('remember_token');
+			$table->string("api_key");
 
 			$table->integer('modified_by')->unsigned()->nullable(); 
 			$table->foreign('modified_by')->references('id')->on('users');

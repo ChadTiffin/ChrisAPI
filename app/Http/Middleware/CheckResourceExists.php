@@ -3,9 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Auth;
 
-class Authenticate
+class CheckResourceExists
 {
     /**
      * Handle an incoming request.
@@ -17,12 +16,15 @@ class Authenticate
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->guest()) {
-            if ($request->ajax() || $request->wantsJson()) {
-                return response('Unauthorized.', 401);
-            } else {
-                return redirect()->guest('login');
-            }
+        $resource = $request->segment(1);
+
+        if (!class_exists("\\App\\".$resource)) {
+            return response()->json([
+                'status' => "Resource not found",
+                'reason' => 'not_found',
+                "code" => "404",
+                "message" => "The requested resource does not exist"
+            ]);
         }
 
         return $next($request);
